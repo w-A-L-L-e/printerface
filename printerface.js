@@ -306,7 +306,7 @@ runCommand( 'ls', '-tr1', '/home/pi/printerface/gcode_uploads' );
 console.log('pronsole.py is spawned, waiting 3 seconds and sending connect...');
 setTimeout( function(){
   //calling connect without params here (todo add ttyUSB etc, but hey the defaults work just fine now ;)
-  //pronsole.stdin.write('connect\n');
+  pronsole.stdin.write('connect\n');
 }, 3000 );
 
 //console.log('pronsole.py is spawned, waiting 3 seconds and sending monitor...');
