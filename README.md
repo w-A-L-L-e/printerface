@@ -11,13 +11,13 @@ tar -xzvf pronterface_src.tar.gz
 
 
 cd /home/pi
-apt-get install node-js
+apt-get install node-js git
 #install npm
 curl https://npmjs.org/install.sh | sh
 
 #get printerface
-scp walle@sitweb.eu:printerface.tar.gz
-tar -xzvf printerface.tar.gz 
+cd /home/pi
+git clone git://github.com/w-A-L-L-e/printerface.git
 
 #forever keeps our printerface running even if it crashes, and creates a logfile while we're at it...
 sudo npm install -g forever@0.9.2
