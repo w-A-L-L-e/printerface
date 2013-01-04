@@ -279,7 +279,7 @@ var printserver = http.createServer(function(req, res) {
     var lastfile = files[files.length-1].toString();
     console.log('last file='+lastfile +"\n");
     pronsole.stdin.write( 'load '+lastfile+"\n" );
-    //pronsole.stdin.write( 'print\n' );
+    pronsole.stdin.write( 'print\n' );
     showPrinterPage( res );
   }
   else if( req.url == '/heatoff' ){
