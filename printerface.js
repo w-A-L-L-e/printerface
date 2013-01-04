@@ -278,7 +278,7 @@ var printserver = http.createServer(function(req, res) {
   else if( req.url == '/printfile' ){
     var lastfile = files[files.length-1].toString();
     console.log('last file='+lastfile +"\n");
-    pronsole.stdin.write( 'load '+lastfile+"\n" );
+    pronsole.stdin.write( 'load /home/pi/printerface/gcode_uploads/'+lastfile+"\n" );
     pronsole.stdin.write( 'print\n' );
     showPrinterPage( res );
   }
