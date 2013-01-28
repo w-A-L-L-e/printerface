@@ -14,12 +14,13 @@ sudo apt-get install python-serial python-wxgtk2.8 python-pyglet
 wget https://github.com/kliment/Printrun/tarball/master
 mv master pronterface_src.tar.gz
 tar -xzvf pronterface_src.tar.gz
-
+mv kliment-Printrun-71e5da0/ /home/pi/printrun
 
 cd /home/pi
-apt-get install node-js git
+sudo apt-get install node-js git
+sudo ln -s /usr/bin/nodejs /usr/bin/node
 #install npm
-curl https://npmjs.org/install.sh | sh
+curl https://npmjs.org/install.sh | sudo sh
 
 #get printerface
 cd /home/pi
@@ -30,6 +31,10 @@ sudo npm install -g forever@0.9.2
 
 #now actually fire it up, put this line in /etc/rc.local to have it on boot
 cd /home/pi/printerface && forever start printerface.js
+# Or less reliably without forever:
+cd /home/pi/printerface && nodejs printerface.js
+
+You should be able to view the web interface at http://<ip address of raspberry pi>:8080 (e.g. http://192.168.1.215:8080).
 
 #I've also added another script that posts my ip in /etc/rc.local to my webserver. That way I can access it from the outside world too ;)
 ```
