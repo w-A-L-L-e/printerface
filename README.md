@@ -34,6 +34,8 @@ cd /home/pi/printerface && forever start printerface.js
 # Or less reliably without forever:
 cd /home/pi/printerface && nodejs printerface.js
 
+You should be able to view the web interface at http://<ip address of raspberry pi>:8080 (e.g. http://192.168.1.215:8080).
+
 #I've also added another script that posts my ip in /etc/rc.local to my webserver. That way I can access it from the outside world too ;)
 ```
 
