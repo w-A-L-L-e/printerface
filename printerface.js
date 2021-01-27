@@ -25,7 +25,9 @@ var spawn    = require('child_process').spawn;
 
 ///home/pi/printrun/pronsole.py
 //var pronsole = spawn('python', ['/home/pi/printrun/test2.py','']);
-var pronsole = spawn('python', ['/home/pi/printrun/pronsole.py','']);
+var pronsole = spawn('python', ['Printrun-master/pronsole.py',''], {
+  detached: true
+});
 
 
 //in future we might use the serialport directly here...
@@ -301,7 +303,13 @@ var printserver = http.createServer(function(req, res) {
 
 //todo make it somehow different here...
 //this makes the list of uploaded files available
-runCommand( 'ls', '-tr1', '/home/pi/printerface/gcode_uploads' );
+runCommand( 'ls', '-tr1', './gcode_uploads' );
+
+
+//Start webserver on port specified here. 
+console.log("Starting printserver http://localhost:"+port)
+printserver.listen(port);
+console.log("done. you can now visit it in your browesr")
 
 console.log('pronsole.py is spawned, waiting 3 seconds and sending connect...');
 setTimeout( function(){
@@ -337,10 +345,6 @@ pronsole.on('exit', function (code) {
   pronsole.stdin.end(); 
   //todo just respawn pronsole here!!!
 });
-
-
-//Start webserver on port specified here. 
-printserver.listen(port);
 
 
 //Start an interactive shell (remove on production, uhu not for this sunday most likely ;))

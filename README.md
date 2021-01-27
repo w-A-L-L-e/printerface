@@ -1,3 +1,4 @@
+# Printerface control your printer with a raspberry pi
 Printerface is something I cooked up to allow me printing to my 3d printers (reprap's) with the browser.
 This allows you to control your 3D printer over the internet using your laptop, ipad, iphone, Android phone or any browser capable device.
 It was made for the inexpensive Raspberry Pi (http://www.raspberrypi.org/) but it has also been reported to work with things like MK802 
@@ -35,4 +36,18 @@ cd /home/pi/printerface && forever start printerface.js
 ```
 
 
+# On desktop mac or windows or linux machine.
+
+This is when you dont have a pi yet. And just want a new interface to run your printer from your machine, or android phone or iphone etc.
+Basically you run printerface on your pc. It starts a webserver and you can either connect with your browser on that machine by going to
+http://localhost:8080 or you can figure out your ip adres and then even visit it from any device on same wifi network http://<your pc ip adres>:8080
+
+Take the desktop branch and clone it.
+Now run the following:
+```
+$ ./install.sh
+$ ./start_printerface.sh
+```
+
+In your browser go to : http://localhost:8080 and enjoy controlling your 3d printer over the web ;).
 

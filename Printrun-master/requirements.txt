@@ -1,0 +1,8 @@
+pyserial (>= 3.0)
+pyglet (>= 1.1)
+cffi
+appdirs (>= 1.4.0)
+pyreadline
+dbus-python >= 1.2.0 ; sys_platform == 'linux'
+pyreadline ; sys_platform == 'win32'
+pyobjc-framework-Cocoa ; sys_platform == 'darwin'

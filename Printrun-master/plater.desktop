@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Plater
+GenericName=Plate building tool
+Comment=Prepares plates for 3D printing
+Icon=plater
+Exec=/usr/bin/plater.py
+StartupNotify=true
+Terminal=false
+Categories=GNOME;GTK;Utility;Graphics;3DGraphics;

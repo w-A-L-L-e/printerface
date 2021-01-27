@@ -1,0 +1,9 @@
+{
+  "homepage": "https://github.com/w-A-L-L-e/printerface",
+  "dependencies": {
+    "formidable": "^1.2.2",
+    "multipart": "^0.1.5",
+    "serialport": "^9.0.6",
+    "socket.io": "^3.1.0"
+  }
+}
