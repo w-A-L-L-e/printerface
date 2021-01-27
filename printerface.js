@@ -53,7 +53,7 @@ function header( response ){
   response.writeHead(200, {'content-type': 'text/html'});
   response.write('<html><head> <link href="/css/printerface.css" rel="stylesheet"> </head><body>'); //background does not work, again we don't care much about styling now (we will use express js in future ...).
   response.write('<center><table class="layout-main">');
-  response.write('<tr><td colspan="'+menu_items.length.toString()+'"><h1>Printerface for Raspberry Pi</h1></td></tr>');
+  response.write('<tr><td colspan="'+menu_items.length.toString()+'"><h1>Printerface</h1></td></tr>');
   menu( response );
 }
 
