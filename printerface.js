@@ -46,13 +46,13 @@ function menu( response ){
     menu_item( response, menu_items[i] );
   }
   response.write('</tr>');
-  response.write('<tr><td colspan="'+menu_items.length.toString()+'" height="400" valign="top" padding="10px">');
+  response.write('<tr><td colspan="'+menu_items.length.toString()+'" " valign="top" padding="10px">');
 }
 
 function header( response ){
   response.writeHead(200, {'content-type': 'text/html'});
-  response.write('<html><body bgcolor="#888888" color="#224422" link="#224422" vlink="#228822" style="background-image:url(images/background.jpg)">'); //background does not work, again we don't care much about styling now (we will use express js in future ...).
-  response.write('<center><table class="layout" border="1" width="800" bgcolor="#EEEEEE">');
+  response.write('<html><head> <link href="/css/printerface.css" rel="stylesheet"> </head><body>'); //background does not work, again we don't care much about styling now (we will use express js in future ...).
+  response.write('<center><table class="layout-main">');
   response.write('<tr><td colspan="'+menu_items.length.toString()+'"><h1>Printerface for Raspberry Pi</h1></td></tr>');
   menu( response );
 }
@@ -68,6 +68,7 @@ function footer( response ){
 function showAboutPage( response ){
   header( response );
   response.write('Written on a sunday by Walter Schreppers<br/>Why? Because : YES we can! <br/> Ow and yeah because it\'s cool: <br/>1. Print anywhere in the world to your reprap at home! <br/> 2. Stop messing with swapping SD cards just upload and print. <br/>3. Build farms of bots all controllable from a single server etc...');
+  footer(response);
 }
 
 function showUploadForm( res ){
@@ -81,6 +82,7 @@ function showUploadForm( res ){
     '<input type="submit" value="Upload">'+
     '</form>'
   );
+  footer(res);
 }
 
 //is only used for showing after upload... todo change this mess ;)
@@ -88,6 +90,7 @@ function showPrintPage( response ){
   //header( res );
   showUploadForm( response );
   response.write('todo connect to serial here...');
+  footer(response);
 }
 
 //actual page to control our printer with pronsole ;)
@@ -98,7 +101,7 @@ function showPrinterPage( res ){
   header( res );
 
   res.write( '<center>' );
-  res.write( '<table width="780px">');
+  res.write( '<table class="layout-printer">');
   res.write( '<tr><td>&nbsp;</td><td>' );
     res.write( '<a href="moveforward">^ forward</a>' );
   res.write( '</td><td>&nbsp;</td><td>&nbsp;</td></tr>' );
@@ -289,8 +292,30 @@ var printserver = http.createServer(function(req, res) {
     pronsole.stdin.write( 'settemp 0\n' );
     showPrinterPage( res );
   }
-
-
+  else if( req.url == '/css/printerface.css' ){
+    var contentType = 'text/css';
+    fs.readFile('./css/printerface.css', function(error, content) {
+        if (error) {
+            if(error.code == 'ENOENT'){
+                fs.readFile('./404.html', function(error, content) {
+                    res.writeHead(200, { 'Content-Type': contentType });
+                    res.end(content, 'utf-8');
+                });
+            }
+            else {
+                res.writeHead(500);
+                res.write('Sorry, check with the site admin for error: '+error.code+' ..\n');
+                res.end();
+            }
+        }
+        else {
+            res.writeHead(200, { 'Content-Type': contentType });
+            res.write(content, 'utf-8');
+            res.end();
+        }
+    });
+    //res.end();
+  }
   else if( req.url == '/files' ){
     showFilesPage( res );
   }
@@ -298,7 +323,6 @@ var printserver = http.createServer(function(req, res) {
     showUploadForm( res );
   }
 
-  footer( res );
 });
 
 //todo make it somehow different here...

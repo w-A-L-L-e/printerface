@@ -1,0 +1,36 @@
+body {
+  background-color: #222;
+  color: #fff;
+}
+
+table {
+  background-color: #444;
+  border: 1px solid #ddd;
+}
+
+table tr:first-row {
+  height: 30px;
+}
+
+
+table.layout-main {
+  width: 800px;
+  margin-top: 50px;
+}
+
+table.layout-printer {
+  margin-top: 50px;
+  border: 0px;
+}
+
+table.layout-printer td {
+  padding: 10px;
+}
+
+
+a {
+  color: #fff;
+  font-size: 18px;
+}
+
+
